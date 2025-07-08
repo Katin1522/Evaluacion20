@@ -64,20 +64,21 @@ registerClient.register = async (req, res) => {
     });
 
    
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
-      auth: {
-        user: config.email.email_user,
-        pass: config.email.email_pass,
-      },
-    });
+    
+const transporter = nodemailer.createTransporter({
+  service: "gmail",
+  auth: {
+    user: config.email.email_user,  
+    pass: config.email.email_pass,  
+  },
+});
 
-    const mailOptions = {
-      from: config.email.email_user,
-      to: email,
-      subject: "Código de verificación",
-      text: `Tu código de verificación es: ${verificationCode}\nExpira en 2 horas.`,
-    };
+const mailOptions = {
+  from: config.email.email_user, 
+  to: email,
+  subject: "Código de verificación",
+  text: `Tu código de verificación es: ${verificationCode}\nExpira en 2 horas.`,
+};
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {

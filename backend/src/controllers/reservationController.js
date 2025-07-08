@@ -27,7 +27,7 @@ reservationController.createReservation = async (req, res) => {
         return res.status(400).json({ message: "El campo servicio es obligatorio" });
     }
 
-    const validStatus = ["pending", "confirmed", "cancelled"];
+    const validStatus = ["Pendiente", "Confirmado", "Cancelado"];
     if (status && !validStatus.includes(status)) {
         return res.status(400).json({ message: "El estado no es válido" });
     }
@@ -77,7 +77,7 @@ reservationController.getReservationById = async (req, res) => {
 reservationController.updateReservation = async (req, res) => {
     const { clientId, vehicle, service, status } = req.body;
 
-    const validStatus = ["pending", "confirmed", "cancelled"];
+    const validStatus = ["Pendiente", "Confirmado", "Cancelado"];
     if (status && !validStatus.includes(status)) {
         return res.status(400).json({ message: "Estado no válido" });
     }

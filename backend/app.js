@@ -1,9 +1,9 @@
 import express from "express";
-import clientRoutes from "./src/routes/client.js";
 import cookieParser from "cookie-parser";
+import "./database.js";  
+import clientRoutes from "./src/routes/client.js";
 import reservationRoutes from "./src/routes/reservation.js";
 import registerClientRouter from "./src/routes/registerClient.js";
-
 const app = express();
 
 app.use(express.json());

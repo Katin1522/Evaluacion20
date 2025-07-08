@@ -1,29 +1,25 @@
-
 import { Schema, model } from "mongoose";
 
-const clientShema = new Schema(
-    {
-    
+const clientShema = new Schema({
     name: {
-        type: Object,
+        type: String, 
         required: true,
     },
-    email :{
+    email: {
         type: String,
         required: true,
     }, 
-    password:{
+    password: {
         type: String,
         required: true,
     },
-    phone:{
-        type:String
+    phone: {
+        type: String
     },
-    age:{
-        type:Number
-    }
+    age: {
+        type: Number
+    },
+    
+});
 
-    }
-);
-
-export default model ("client", clientShema);
+export default model("client", clientShema);

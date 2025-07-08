@@ -11,18 +11,24 @@ clientController.getClients = async (req, res) => {
 };
 
 
+
 clientController.createClient = async (req, res) => {
     const { name, email, password, phone, age } = req.body;
 
-   
-    if (!name || typeof name !== 'string') {
-        return res.status(400).json({ message: "El nombre es regerido con letras" });
-    }
+if (!name || typeof name !== 'string' || name.trim().length === 0) {
+    return res.status(400).json({ message: "El nombre es requerido y debe ser texto válido" });
+}
 
-    const emailRegex = /\S+@\S+\.\S+/;
-    if (!email || !emailRegex.test(email)) {
-        return res.status(400).json({ message: "El email es requerido" });
+
+if (email) {
+    const existing = await clientModel.findOne({ 
+        email, 
+        _id: { $ne: req.params.id } 
+    });
+    if (existing) {
+        return res.status(409).json({ message: "Email ya está en uso" });
     }
+}
 
     if (!password || password.length < 6) {
         return res.status(400).json({ message: "La contraseña necesita 6 caracteres" });
