@@ -17,7 +17,7 @@ const swaggerDocument = JSON.parse(
     fs.readFileSync(path.resolve("./partplus.json"), "utf-8")
 )
 
-app.use("/api/docs", swaggerUi.serve,swaggerUi.setup(swaggerDocument));
+app.use("/api/docsPp", swaggerUi.serve,swaggerUi.setup(swaggerDocument));
 app.use("/api/client", clientRoutes);
 app.use("/api/reservation", reservationRoutes);
 app.use("/api/registerClient", registerClientRouter);
